@@ -12,7 +12,7 @@ STS = $(addsuffix .txt,$(base))
 
 .PHONY:	print
 print:	$(STS)
-	echo "assembly ncontigs nbps ulen maxlen n50num n50len nonATGC"
+	echo "assembly ncontigs nbps ulen maxlen n50num ng50num n50len ng50len nonATGC"
 	cat $^
 
 ###### ######
