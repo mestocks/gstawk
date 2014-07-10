@@ -1,5 +1,5 @@
 
-BEGIN { FS = "[^ATGCatgc]"; i = 0; n = 0; L = 0; min = 100; non = 0 }
+BEGIN { FS = "[^ATGCatgc]"; i = 0; n = 0; L = 0; min = 0; non = 0 }
 
 {
     if (index($0,">")) {
