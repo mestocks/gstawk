@@ -2,8 +2,7 @@
 
 ###### ######
 
-FNAMES = $(shell cat $(FILENAMES))
-FSA = $(addprefix $(PWD)/,$(FNAMES))
+FSA = $(shell cat $(FILENAMES))
 base = $(basename $(FSA))
 STS = $(addsuffix .txt,$(base))
 
