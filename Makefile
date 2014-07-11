@@ -22,6 +22,8 @@ stats:	$(STS)
 
 %.txt:	%.fa
 	echo -n $^" " >> $@
-	awk -f bin/contig_info.awk $^ | sort -nr | awk -f bin/n50.awk >> $@
+	./gstawk.o $^ | sort -nr | awk -f bin/n50.awk >> $@
+
+#awk -f bin/contig_info.awk $^ | sort -nr | awk -f bin/n50.awk >> $@
 
 
