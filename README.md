@@ -1,4 +1,8 @@
-**gstawk
+gstawk
+====
+
+Quick guide
+-------------
 
 Usage:
 
