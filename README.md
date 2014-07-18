@@ -28,7 +28,7 @@ Quick guide
 gstawk [assembly1.fa assembly2.fa... ]
 ```
 
-So to calculated stats for a series of assemblies the current working directory you could type:
+So to calculate statistics for a series of assemblies in the current working directory you would, for example, type:
 
 ```bash
 gstawk *-scaffolds.fa
