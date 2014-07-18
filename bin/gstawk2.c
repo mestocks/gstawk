@@ -2,11 +2,18 @@
 #include<stdlib.h>
 #include<string.h>
 
+int cmpfunc (const void * a, const void * b)
+{
+   return ( *(int*)b - *(int*)a );
+}
+
 int main(int argc, char *argv[]) {
 
   FILE *fp;
-  int size = 100;
+  int size = 128;
   char buf[size];
+
+  static int clen[10000000];
   
   int i = 0;
   int n = 0;
@@ -26,12 +33,12 @@ int main(int argc, char *argv[]) {
       // > header
       if (i > 0) {
 	if (l >= min) {
-	  printf("%d\n", l);
-	  //printf("> %d %d %d %d\n", i, l, L, n);
 	  L = L + l;
 	  n++;
+	  clen[n - 1] = l;
 	}
       }
+      else i = 1;
       l = 0;
     }
     // Sequence
@@ -46,19 +53,31 @@ int main(int argc, char *argv[]) {
       
       int b = 0;
       while(buf[b] != '\0' && buf[b] != '\n') {
-	if(strchr(dna, buf[b++]) == NULL) non++;
+	if (strchr(dna, buf[b++]) == NULL) non++;
       }
     }
-    i++;
   }
   
   if (l >= min) {
     L = L + l;
     n++;
-    printf("%d\n", l);
-    printf("%d %d %d", L, n, non);
-    printf("\n");
+    clen[n - 1] = l;
   }
+  
+  qsort(clen, n, sizeof(int), cmpfunc);
+  
+  int c = 0;
+  int n50 = 0;
+  int n50len = 0;
+  int h = L / 2;
+  
+  while (n50 <= h) {
+    n50 = n50 + clen[c];
+    n50len = clen[c];
+    c++;
+  }
+  
+  printf("%d %d %d %d %d %d %d\n", n, L, L / n, clen[0], c, n50len, non);
   
  fclose(fp);
  
