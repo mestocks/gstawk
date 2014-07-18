@@ -1,5 +1,5 @@
 Usage:
 
 ```bash
-gstawk assembly.fa
+gstawk assembly1.fa assembly2.fa... 
 ```
