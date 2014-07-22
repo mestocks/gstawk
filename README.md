@@ -25,7 +25,7 @@ Quick guide
 **gstawk** has usage:
 
 ```bash
-gstawk [assembly1.fa assembly2.fa... ]
+gstawk <assembly_fasta_files>
 ```
 
 So to calculate statistics for a series of assemblies in the current working directory you would, for example, type:
