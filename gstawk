@@ -1,9 +1,22 @@
 #! /bin/bash
 
-FILES="${@:1}"
+#FILES="${@:1}"
+# Defaults
+J=1
+
+while getopts j: opt
+do
+    case $opt in
+	j) J=$OPTARG;;
+    esac
+done
+
+INDEX=$(($OPTIND))
+FILES="${@:$INDEX}"
+
 wrkdir=$(pwd)
 makedir=$(dirname $(readlink -f "$0"))
-TEST=$wrkdir"/"test.txt
-echo $FILES > $TEST
-make -C $makedir -s stats FILENAMES=$TEST PWD=$wrkdir
-make -C $makedir -s print FILENAMES=$TEST PWD=$wrkdir
+FILELOG=$wrkdir"/".gstawk.log
+echo $FILES > $FILELOG
+make -j $J -f gmake -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
+make -f gmake -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
