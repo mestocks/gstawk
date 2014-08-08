@@ -11,7 +11,7 @@ Download the latest .tar.gz version and unpack using:
 ```bash
 tar -zxvf gstawk-x.y.z.tar.gz
 ```
-where *-x.y.z* is the version number. You will now need to compile the *C* script, but this is easy. Move into the *gstawk-x.y.z* directory, then compile it by typing:
+where *x.y.z* is the version number. You will now need to compile the *C* script, but this is easy. Move into the *gstawk-x.y.z* directory, then compile it by typing:
 
 ```bash
 make
