@@ -18,5 +18,5 @@ wrkdir=$(pwd)
 makedir=$(dirname $(readlink -f "$0"))
 FILELOG=$wrkdir"/".gstawk.log
 echo $FILES > $FILELOG
-make -j $J -f gmake -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
-make -f gmake -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
+make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
+make -f gstawk_make -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
