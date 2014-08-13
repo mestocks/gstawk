@@ -19,9 +19,6 @@ print:	$(STS)
 .PHONY:	stats
 stats:	$(STS)
 
-$(STS):
-	echo $@
-
 %.txt:	%.fa
 	echo -n $^" " > $@
 	bin/gstat.o $^ >> $@
