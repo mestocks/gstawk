@@ -19,6 +19,8 @@ print:	$(STS)
 .PHONY:	stats
 stats:	$(STS)
 
+echo $(STS)
+
 %.txt:	%.fa
 	echo -n $^" " > $@
 	bin/gstat.o $^ >> $@
