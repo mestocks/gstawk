@@ -3,20 +3,27 @@
 #FILES="${@:1}"
 # Defaults
 J=1
+X=0
 
-while getopts j: opt
+while getopts j:x opt
 do
     case $opt in
 	j) J=$OPTARG;;
+	x) X=1;;
     esac
 done
 
 INDEX=$(($OPTIND))
 FILES="${@:$INDEX}"
 
-wrkdir=$(pwd)
-makedir=$(dirname $(readlink -f "$0"))
-FILELOG=$wrkdir"/".gstawk.log
-echo $FILES > $FILELOG
-make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
-make -f gstawk_make -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
+if [ $X -eq 1 ]
+then
+    bin/nx.o $FILES
+else
+    wrkdir=$(pwd)
+    makedir=$(dirname $(readlink -f "$0"))
+    FILELOG=$wrkdir"/".gstawk.log
+    echo $FILES > $FILELOG
+    make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
+    make -f gstawk_make -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
+fi
