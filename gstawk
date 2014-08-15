@@ -21,7 +21,7 @@ makedir=$(dirname $(readlink -f "$0"))
 
 if [ $X -eq 1 ]
 then
-    make -f gstawk_make -C $makedir -s nx FILENAMES=$FILES PWD=$wrkdir
+    $makedir/bin/nx.o $FILES
 else
     FILELOG=$wrkdir"/".gstawk.log
     echo $FILES > $FILELOG
