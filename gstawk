@@ -16,12 +16,13 @@ done
 INDEX=$(($OPTIND))
 FILES="${@:$INDEX}"
 
+wrkdir=$(pwd)
+makedir=$(dirname $(readlink -f "$0"))
+
 if [ $X -eq 1 ]
 then
-    bin/nx.o $FILES
+    make -f gstawk_make -C $makedir -s nx FILENAMES=$FILES PWD=$wrkdir
 else
-    wrkdir=$(pwd)
-    makedir=$(dirname $(readlink -f "$0"))
     FILELOG=$wrkdir"/".gstawk.log
     echo $FILES > $FILELOG
     make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
