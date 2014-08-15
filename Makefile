@@ -1,6 +1,6 @@
 
 .PHONY:	all
-all:	bin/gstat.o
+all:	bin/gstat.o bin/nx.o
 
-bin/gstat.o:	bin/gstat.c
+bin/%.o:	bin/%.c
 	gcc -o $@ $^
