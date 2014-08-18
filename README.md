@@ -27,14 +27,20 @@ Quick guide
 gstawk [options] <assembly_fasta_files>
 ```
 
-So to calculate statistics for a series of assemblies in the current working directory you would, for example, type:
+So to calculate some basic statistics for a series of assemblies in the current working directory you would, for example, type:
 
 ```bash
 gstawk *-scaffolds.fa
 ```
 
-You can parallelise the script by using the ```-j``` option. For example, the following command would run 4 parallel processes:
+You can parallelise the calculation of these basic stats by using the ```-j``` option. For example, the following command would run 4 parallel processes:
 
 ```bash
 gstawk -j 4 *-scaffolds.fa
+```
+
+**gstawk** can also calculate the more general N(x) statistic, where x represents the the percentiles from 0-100. This can be done using the ```-x``` option:
+
+```bash
+gstawk -x assembly1-scaffolds.fa
 ```
