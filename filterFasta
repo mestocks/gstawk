@@ -1,0 +1,19 @@
+#! /bin/bash
+
+# Usage:
+#
+#       filterFasta [-l min_length] <file.fsa>
+
+LEN=0
+
+while getopts l: opt
+do
+    case $opt in
+	l) LEN=$OPTARG;;
+    esac
+done
+
+index=$((OPTIND))
+FILE="${@:$index}"
+
+awk -v l=$LEN -- ' BEGIN { n=0; seq="" }; { if (/^>/) { if (n > 0 && length(seq) >= l) { print seqid"\n"seq }; n++; seqid=$0; seq="" } else { newseq=$0"\n"; seq=seq$0 } } ' $FILE
