@@ -42,5 +42,5 @@ gstawk -j 4 *-scaffolds.fa
 **gstawk** can also calculate the more general N(x) statistic, where x represents the the percentiles from 0-100. This can be done using the ```-x``` option:
 
 ```bash
-gstawk -x assembly1-scaffolds.fa
+gstawk -x assembly-scaffolds.fa
 ```
