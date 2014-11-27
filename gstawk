@@ -1,13 +1,18 @@
 #! /bin/bash
 
-#FILES="${@:1}"
+# gstawk *.fa
+# gstawk -x assembly.fa
+# gstawk -c CTGCAG assembly.fa
+
 # Defaults
+C=""
 J=1
 X=0
 
-while getopts j:x opt
+while getopts c:j:x opt
 do
     case $opt in
+	c) C=$OPTARG;;
 	j) J=$OPTARG;;
 	x) X=1;;
     esac
@@ -19,12 +24,17 @@ FILES="${@:$INDEX}"
 wrkdir=$(pwd)
 makedir=$(dirname $(readlink -f "$0"))
 
-if [ $X -eq 1 ]
+if [ "$C" != "" ]
 then
-    $makedir/bin/nx.o $FILES
+    $makedir/bin/grep.o $C $FILES
 else
-    FILELOG=$wrkdir"/".gstawk.log
-    echo $FILES > $FILELOG
-    make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
-    make -f gstawk_make -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
+    if [ $X -eq 1 ]
+    then
+	$makedir/bin/nx.o $FILES
+    else
+	FILELOG=$wrkdir"/".gstawk.log
+	echo $FILES > $FILELOG
+	make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
+	make -f gstawk_make -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
+    fi
 fi
