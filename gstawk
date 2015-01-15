@@ -26,7 +26,7 @@ makedir=$(dirname $(readlink -f "$0"))
 
 if [ "$C" != "" ]
 then
-    $makedir/bin/grep.o $C $FILES
+    $makedir/bin/fagrep.o $C $FILES
 else
     if [ $X -eq 1 ]
     then
