@@ -17,6 +17,8 @@ int main(int argc, char *argv[]) {
   std::string line;
   std::ifstream infile(argv[1]);
 
+  // ./cinv <fasta.fa> <chr> <start> <end>
+
   std::string contig = argv[2];
   std::string::size_type begin = atoi(argv[3]);
   std::string::size_type end = atoi(argv[4]);
