@@ -1,9 +1,9 @@
 
 .PHONY:	all
-all:	bin/gstat.o bin/nx.o bin/fagrep.o bin/cinv
+all:	bin/gstat.o bin/nx.o bin/fagrep.o bin/cinv bin/cluster
 
 bin/%.o:	bin/%.c
 	gcc -o $@ $^
 
-bin/cinv:	bin/cinv.cpp
+bin/%:	bin/%.cpp
 	g++ -o $@ $^

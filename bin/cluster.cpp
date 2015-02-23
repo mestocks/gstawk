@@ -4,6 +4,8 @@
 
 int main() {
 
+  // cat chr pstart pend readID distance | cluster
+  
   int pend;
   int pstart;
   int distance;
