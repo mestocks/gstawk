@@ -1,15 +1,16 @@
 
 #include <string>
 #include <iostream>
+#include <algorithm>
 
-int main() {
+int main(int argc, char *argv[]) {
 
-  // cat chr pstart pend readID distance | cluster
+  // cat chr pstart pend readID distance | cluster maxdistance
   
   int pend;
   int pstart;
   int distance;
-  int maxdistance = 500;
+  int maxdistance = atoi(argv[1]);
   
   std::string chr;
   std::string readID;
@@ -23,15 +24,16 @@ int main() {
     if (i == 0) { end_cache = pstart; }
     
     if (chr_cache == chr || chr_cache == "start") {
-      if (distance <= 500) {
-	if (pstart - end_cache > 500) { c++; }
+      if (distance <= maxdistance) {
+	if (pstart - end_cache > maxdistance) { c++; }
 	std::cout << chr << " " << pstart << " " << pend << " " << readID << " " << distance << " " << c << std::endl;
       } 
     } else {
+      
+      if (distance <= maxdistance) {
 	c++;
-	if (distance <= 500) {
-	  std::cout << chr << " " << pstart << " " << pend << " " << readID << " " << distance << " " << c << std::endl;
-	}
+	std::cout << chr << " " << pstart << " " << pend << " " << readID << " " << distance << " " << c << std::endl;
+      }
     }
     end_cache = pend;
     chr_cache = chr;
