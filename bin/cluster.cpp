@@ -24,13 +24,13 @@ int main(int argc, char *argv[]) {
     if (i == 0) { end_cache = pstart; }
     
     if (chr_cache == chr || chr_cache == "start") {
-      if (distance <= maxdistance) {
+      if (distance <= maxdistance || distance == -1) {
 	if (pstart - end_cache > maxdistance) { c++; }
 	std::cout << chr << " " << pstart << " " << pend << " " << readID << " " << distance << " " << c << std::endl;
       } 
     } else {
       
-      if (distance <= maxdistance) {
+      if (distance <= maxdistance || distance == -1) {
 	c++;
 	std::cout << chr << " " << pstart << " " << pend << " " << readID << " " << distance << " " << c << std::endl;
       }
