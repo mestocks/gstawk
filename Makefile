@@ -1,4 +1,5 @@
 
+
 .PHONY:	all
 all:	bin/gstat.o bin/nx.o bin/fagrep.o bin/cinv bin/cluster
 
