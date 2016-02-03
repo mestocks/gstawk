@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
+// fagrep <dna_string> <file>
+
 // Searches for identifical matches in sequences in fasta
 // file. Outputs chr, start and end positions in bed format
 // (so start positions are 0-based and end positions are
