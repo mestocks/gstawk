@@ -8,12 +8,13 @@
 #FNAMES = $(shell cat $(FILENAMES))
 
 # path/to/assembly.fa
-FPATHS = $(shell cat $(FILENAMES))
+FULLPATHS = $(shell cat $(FILENAMES))
 
 #/data/mist/test_data/Pa_can008.fa
 
 # assembly.fa
-FNAMES = $(notdir $(FNAMES))
+FNAMES = $(notdir $(FULLPATHS))
+FPATHS = $(dir $(FULLPATHS))
 
 # assembly.fa.txt
 STS = $(addsuffix .txt,$(FNAMES))
@@ -34,7 +35,8 @@ print:	$(STS)
 .PHONY:	stats
 stats:	$(STS)
 
-%.txt:	%
+%.txt:	$(FPATHS)%
 	echo -n $^" " > $@
 	gstat $^ >> $@
+
 
