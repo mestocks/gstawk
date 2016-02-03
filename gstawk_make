@@ -21,5 +21,5 @@ stats:	$(STS)
 
 %.txt:	%
 	echo -n $^" " > $@
-	bin/gstat.o $^ >> $@
+	gstat $^ >> $@
 
