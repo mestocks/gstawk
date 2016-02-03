@@ -23,7 +23,7 @@ makedir=$(dirname $(readlink -f "$0"))
 
 if [ $X -eq 1 ]
 then
-    $makedir/bin/nx.o $FILES
+    nx $FILES
 else
     FILELOG=$wrkdir"/".gstawk.log
     echo $FILES > $FILELOG

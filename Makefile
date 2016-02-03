@@ -4,18 +4,18 @@ PFX = $(HOME)/.local/bin/
 BIN = bin/
 SRC = src/
 
-EXE = gstat nx.o fagrep cinv cluster
+EXE = gstat nx fagrep cinv cluster gstawk filterFasta
 BINS = $(addprefix $(BIN),$(EXE))
 PFXS = $(addprefix $(PFX),$(EXE))
 
 .PHONY:	all
 all:	$(BINS)
 
-$(BIN)%.o:	$(SRC)%.c
-	gcc -o $@ $^
-
 $(BIN)%:	$(SRC)%.c
 	gcc -o $@ $^
+
+$(BIN)%:	$(SRC)%.sh
+	cp $^ $@
 
 $(BIN)%:	$(SRC)%.cpp
 	g++ -o $@ $^
