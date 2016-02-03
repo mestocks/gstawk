@@ -11,12 +11,11 @@ Download the latest .tar.gz version and unpack using:
 ```bash
 tar -zxvf gstawk-x.y.z.tar.gz
 ```
-where ```x.y.z``` is the version number. You will now need to compile the ```C``` script, but this is easy. Move into the ```gstawk-x.y.z/``` directory, then compile it by typing:
+where ```x.y.z``` is the version number. Move into the ```gstawk-x.y.z/``` directory, then compile by typing:
 
 ```bash
 make
 ```
-You're now ready to go. If you want the script to be excutable from anywhere then add the path to the ```gstawk-x.y.z/``` directory to your ```$PATH```. Documentation on how to do this is only a quick google search away.
 
 Quick guide
 -------------
