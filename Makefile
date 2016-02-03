@@ -9,7 +9,7 @@ BINS = $(addprefix $(BIN),$(EXE))
 PFXS = $(addprefix $(PFX),$(EXE))
 
 .PHONY:	all
-all:	$(BINS)
+all:	$(BINS) $(BIN)gstawk_make
 
 $(BIN)%:	$(SRC)%.c
 	gcc -o $@ $^
@@ -20,8 +20,11 @@ $(BIN)%:	$(SRC)%.sh
 $(BIN)%:	$(SRC)%.cpp
 	g++ -o $@ $^
 
+$(BIN)gstawk_make:	$(SRC)gstawk_make
+	cp $^ $@
+
 .PHONY:	install
-install:	$(PFXS)
+install:	$(PFXS) $(PFX)gstawk_make
 
 $(PFX)%:	$(BIN)%
 	cp $^ $@

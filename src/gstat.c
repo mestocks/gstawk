@@ -1,17 +1,17 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int cmpfunc (const void * a, const void * b) { return ( *(int*)b - *(int*)a ); }
 
 int main(int argc, char *argv[]) {
-  
+
   const int size = 128;
   const char *dna = "ATGCatgc";
   FILE *fp = fopen(argv[1], "r");
 
   char buf[size];
-  int clen[10000000];
+  int clen[1000000];
   
   int i = 0;
   int n = 0;

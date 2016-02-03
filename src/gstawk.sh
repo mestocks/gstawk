@@ -1,5 +1,7 @@
 #! /bin/bash
 
+pfx=$HOME"/.local/bin"
+
 # gstawk *.fa
 # gstawk -x assembly.fa
 
@@ -27,6 +29,7 @@ then
 else
     FILELOG=$wrkdir"/".gstawk.log
     echo $FILES > $FILELOG
-    make -j $J -f gstawk_make -C $makedir -s stats FILENAMES=$FILELOG PWD=$wrkdir
-    make -f gstawk_make -C $makedir -s print FILENAMES=$FILELOG PWD=$wrkdir
+    make -j $J -f $pfx"/gstawk_make" -s stats FILENAMES=$FILELOG PWD=$wrkdir
+    make -f $pfx"/gstawk_make" -s print FILENAMES=$FILELOG PWD=$wrkdir
 fi
+
