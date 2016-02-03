@@ -2,15 +2,8 @@
 
 ###### ######
 
-#PWD=/home/mist
-#FILENAMES=$(PWD)/.gstawk.log
-
-#FNAMES = $(shell cat $(FILENAMES))
-
 # path/to/assembly.fa
 FULLPATHS = $(shell cat $(FILENAMES))
-
-#/data/mist/test_data/Pa_can008.fa
 
 # assembly.fa
 FNAMES = $(notdir $(FULLPATHS))
@@ -18,10 +11,6 @@ FPATHS = $(dir $(FULLPATHS))
 
 # assembly.fa.txt
 STS = $(addsuffix .txt,$(FNAMES))
-
-#FSA = $(addprefix $(PWD)/,$(FNAMES))
-#base = $(basename $(FSA))
-#STS = $(addsuffix .txt,$(FSA))
 
 ###### ######
 
