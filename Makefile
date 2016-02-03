@@ -1,10 +1,11 @@
-
+BIN = bin/
+SRC = src/
 
 .PHONY:	all
-all:	bin/gstat.o bin/nx.o bin/fagrep.o bin/cinv bin/cluster
+all:	$(BIN)gstat.o $(BIN)nx.o $(BIN)fagrep.o $(BIN)cinv $(BIN)cluster
 
-bin/%.o:	bin/%.c
+$(BIN)%.o:	$(SRC)%.c
 	gcc -o $@ $^
 
-bin/%:	bin/%.cpp
+$(BIN)%:	$(SRC)%.cpp
 	g++ -o $@ $^
