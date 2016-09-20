@@ -23,8 +23,22 @@ $(BIN)%:	$(SRC)%.cpp
 $(BIN)gstawk_make:	$(SRC)gstawk_make
 	cp $^ $@
 
+###
+
+.PHONY:	clean
+clean:
+	-rm $(BINS) $(BIN)gstawk_make
+
+###### ######
+
 .PHONY:	install
 install:	$(PFXS) $(PFX)gstawk_make
 
 $(PFX)%:	$(BIN)%
 	cp $^ $@
+
+###
+
+.PHONY:	uninstall
+uninstall:
+	-rm $(PFXS) $(PFX)gstawk_make
