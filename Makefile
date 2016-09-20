@@ -4,7 +4,7 @@ PFX = $(HOME)/.local/bin/
 BIN = bin/
 SRC = src/
 
-EXE = gstat nx fagrep cinv cluster gstawk filterFasta
+EXE = chrlen gstat nx fagrep cinv cluster gstawk filterFasta
 BINS = $(addprefix $(BIN),$(EXE))
 PFXS = $(addprefix $(PFX),$(EXE))
 
