@@ -12,15 +12,19 @@ PFXS = $(addprefix $(PFX),$(EXE))
 all:	$(BINS) $(BIN)gstawk_make
 
 $(BIN)%:	$(SRC)%.c
+	mkdir -p $(BIN)
 	gcc -o $@ $^
 
 $(BIN)%:	$(SRC)%.sh
+	mkdir -p $(BIN)
 	cp $^ $@
 
 $(BIN)%:	$(SRC)%.cpp
+	mkdir -p $(BIN)
 	g++ -o $@ $^
 
 $(BIN)gstawk_make:	$(SRC)gstawk_make
+	mkdir -p $(BIN)
 	cp $^ $@
 
 ###
@@ -35,6 +39,7 @@ clean:
 install:	$(PFXS) $(PFX)gstawk_make
 
 $(PFX)%:	$(BIN)%
+	mkdir -p $(PFX)
 	cp $^ $@
 
 ###
