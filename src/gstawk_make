@@ -26,6 +26,6 @@ stats:	$(STS)
 
 %.txt:	$(FPATHS)%
 	echo -n $^" " > $@
-	gstat $^ >> $@
+	gstawk $^ >> $@
 
 
