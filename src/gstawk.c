@@ -50,6 +50,8 @@ int main(int argc, char *argv[])
   } else {
     arg1 = 1;
   }
+
+  printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "assembly", "ncontigs", "nbps", "ulen", "maxlen", "n50num", "n50len", "nonATGC");
   
   for (f = arg1; f < argc; f++) {
     if (f == 0) {
@@ -63,8 +65,6 @@ int main(int argc, char *argv[])
     non = 0;
     ichr = 0;
     inseqid = 0;
-
-    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "assembly", "ncontigs", "nbps", "ulen", "maxlen", "n50num", "n50len", "nonATGC");
     
     while (!feof(fp)) {
       res = fread(buffer, sizeof(char), BSIZE - 1, fp);
