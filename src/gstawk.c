@@ -2,75 +2,117 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define BSIZE 1028
+#define DNA 128
+#define BSIZE 8192
 #define NCHR 1000000
 
-int cmpfunc (const void * a, const void * b) { return ( *(int*)b - *(int*)a ); }
+int cmpfunc (const void * a, const void * b) { return ( *(long long int*)b - *(long long int*)a ); }
 
 int main(int argc, char *argv[])
 {  
   const char *dna = "ATGCatgc";
 
-  int f;
-  FILE *fp;
-  int chrlen[NCHR];
-  char buffer[BSIZE];
+  int d;
+  int darray[DNA];
+  for (d = 0; d < DNA; d++) {
+    darray[d] = 0;
+  }
   
-  for (f = 1; f < argc; f++) {
-    fp = fopen(argv[f], "r");
-    
-    
-    int i = 0;
-    int n = 0;
-    int l = 0;
-    int L = 0;
-    int min = 0;
-    int non = 0;
-    int b;
-    int seqlen;
-    
-    while (fgets(buffer, BSIZE, fp) != NULL) {
-      
-      if (strstr(buffer, ">") != NULL) {
-	if (i > 0) {
-	  if (l >= min) {
-	    L = L + l;
-	    n++;
-	    chrlen[n - 1] = l; } }
-	else i = 1;
-	l = 0; }
-      
-      else {
-	seqlen = strlen(buffer);
-	if (buffer[seqlen - 1] == '\n') { seqlen = seqlen - 1; }
-	l = l + seqlen;
-	
-	b = 0;
-	while(buffer[b] != '\0' && buffer[b] != '\n') {
-	  if (strchr(dna, buffer[b++]) == NULL) non++; } }
+  for (d = 0; d < 8; d++) {
+    darray[(int)dna[d]] = 1;
+  }
+  
+  int f;
+  int res;
+  int arg1;
+  FILE *fp;
+  char *tmp;
+  char buffer[BSIZE];
+  long long int chrlen[NCHR];
+
+  for (d = 0; d < NCHR; d++) {
+    chrlen[d] = 0;
+  }
+
+  int inseqid;
+  long long int l;
+  long long int L;
+  long long int non;
+  unsigned int ichr;
+
+  int c;
+  double h;
+  long long int n50;
+  long long int n50len;
+  
+  if (argc == 1) {
+    arg1 = 0;
+  } else {
+    arg1 = 1;
+  }
+  
+  for (f = arg1; f < argc; f++) {
+    if (f == 0) {
+      fp = stdin;
+    } else {
+      fp = fopen(argv[f], "r");
     }
     
-    if (l >= min) {
-      L = L + l;
-      n++;
-      chrlen[n - 1] = l; }
+    l = 0;
+    L = 0;
+    non = 0;
+    ichr = 0;
+    inseqid = 0;
+
+    printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "assembly", "ncontigs", "nbps", "ulen", "maxlen", "n50num", "n50len", "nonATGC");
     
-    qsort(chrlen, n, sizeof(int), cmpfunc);
+    while (!feof(fp)) {
+      res = fread(buffer, sizeof(char), BSIZE - 1, fp);
+      buffer[res] = '\0';
+      tmp = buffer;
+
+      while (*tmp) {
+	if (*tmp == '>') {
+	  inseqid = 1;
+	  if (ichr != 0) {	    
+	    chrlen[ichr - 1] = l;
+	    l = 0;
+	  }
+	  ichr++;
+	} else if (inseqid == 1) {
+	  if (*tmp == '\n') {
+	    inseqid = 0;
+	  }
+	} else if (*tmp != '\n') {
+	  l++;
+	  L++;
+	  if (darray[(int)(*tmp)] == 0) {
+	    non++;
+	  }
+	}
+	tmp++;
+      }
+    }
+    chrlen[ichr - 1] = l;
+    qsort(chrlen, ichr, sizeof(long long int), cmpfunc);
     
-    int c = 0;
-    int n50 = 0;
-    int n50len = 0;
-    int h = L / 2;
+    c = 0;
+    n50 = 0;
+    n50len = 0;
+    h = L / 2;
     
     while (n50 <= h) {
       n50 = n50 + chrlen[c];
       n50len = chrlen[c];
-      c++; }
-    
-    printf("%s %d %d %d %d %d %d %d\n", argv[f], n, L, L / n, chrlen[0], c, n50len, non);
+      c++;
+    }
+    if (f == 0) {
+      printf("%s\t%d\t%lli\t%lli\t%lli\t%d\t%lli\t%lli\n", "stdin", ichr, L, L / ichr, chrlen[0], c, n50len, non);
+    } else {
+      printf("%s\t%d\t%lli\t%lli\t%lli\t%d\t%lli\t%lli\n", argv[f], ichr, L, L / ichr, chrlen[0], c, n50len, non);
+    }
     
     fclose(fp);
   }
- 
  return 0;
 }

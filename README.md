@@ -1,45 +1,44 @@
 gstawk
 ====
 
-**gstawk** calculates some common genome assembly stats from fasta files containing your assembled contigs or scaffolds. **gstawk** is written ```C``` but implemented using ```Gnu Make```, so that statistics are only calculated for new assemblies, or for assemblies that have subsequently changed.
+**gstawk** calculates common genome assembly stats from fasta files.
 
-Installation
+Quick Guide
 -------------
 
-Download the latest .tar.gz version and unpack using:
-
 ```bash
-tar -zxvf gstawk-x.y.z.tar.gz
+Usage:
+
+    gstawk [FILES]
+
+If the number of [FILES] is 0, then gstawk attempts to read from stdin.
+
+Example output:
+
+    assembly    ncontigs    nbps    ulen    maxlen    n50num    n50len    nonATGC
+    file1.fa    47740    1173204653    24574    9022850    297    868209    11549079
+    file2.fa    42231    1173183641    24137    9021331    302    832291    10227642
+
+Output:
+
+    ncontigs - number of contigs
+    nbps     - total number of base pairs
+    ulen     - mean contig length
+    maxlen   - size of the largest contig
+    n50num   - number of contigs making up 50% of all base pairs
+    n50len   - smallest contig included in those making up 50% of all base pairs
+    nonATGC  - number of non-DNA bases (i.e. not 'A', 'T', 'G', 'C', 'a', 't', 'g' or 'c')
 ```
-where ```x.y.z``` is the version number. Move into the ```gstawk-x.y.z/``` directory, then compile by typing:
+
+Quick Install
+-------------
 
 ```bash
+wget https://github.com/mspopgen/gstawk/archive/vX.Y.Z.tar.gz
+tar -zxvf vX.Y.X.tar.gz
+cd gstawk-X.Y.Z
 make
+make install
 ```
-
-Quick guide
--------------
-
-**gstawk** has usage:
-
-```bash
-gstawk [options] <assembly_fasta_files>
-```
-
-So to calculate some basic statistics for a series of assemblies in the current working directory you would, for example, type:
-
-```bash
-gstawk *-scaffolds.fa
-```
-
-You can parallelise the calculation of these basic stats by using the ```-j``` option. For example, the following command would run 4 parallel processes:
-
-```bash
-gstawk -j 4 *-scaffolds.fa
-```
-
-**gstawk** can also calculate the more general N(x) statistic, where x represents the the percentiles from 0-100. This can be done using the ```-x``` option:
-
-```bash
-gstawk -x assembly-scaffolds.fa
-```
+This will install the relevant binaries into ```~/.local/bin/```. Be sure to add this directory to your ```$PATH```
+so that it can be called from any directory.

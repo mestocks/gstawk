@@ -4,41 +4,35 @@ PFX = $(HOME)/.local/bin/
 BIN = bin/
 SRC = src/
 
-EXE = chrlen gstawk nx fagrep cinv cluster make_gstawk filterFasta
+#EXE = chrlen gstawk nx fagrep cinv cluster filterFasta
+EXE = chrlen gstawk
 BINS = $(addprefix $(BIN),$(EXE))
 PFXS = $(addprefix $(PFX),$(EXE))
 
 Wgcc = -Wall -Wextra -Wpedantic
 
 .PHONY:	all
-all:	$(BINS) $(BIN)gstawk_make
+all:	$(BINS)
 
 $(BIN)%:	$(SRC)%.c
 	mkdir -p $(BIN)
 	gcc $(Wgcc) -o $@ $^
 
-$(BIN)%:	$(SRC)%.sh
-	mkdir -p $(BIN)
-	cp $^ $@
+#$(BIN)%:	$(SRC)%.cpp
+#	mkdir -p $(BIN)
+#	g++ -o $@ $^
 
-$(BIN)%:	$(SRC)%.cpp
-	mkdir -p $(BIN)
-	g++ -o $@ $^
-
-$(BIN)gstawk_make:	$(SRC)gstawk_make
-	mkdir -p $(BIN)
-	cp $^ $@
 
 ###
 
 .PHONY:	clean
 clean:
-	-rm $(BINS) $(BIN)gstawk_make
+	-rm $(BINS)
 
 ###### ######
 
 .PHONY:	install
-install:	$(PFXS) $(PFX)gstawk_make
+install:	$(PFXS)
 
 $(PFX)%:	$(BIN)%
 	mkdir -p $(PFX)
@@ -48,4 +42,4 @@ $(PFX)%:	$(BIN)%
 
 .PHONY:	uninstall
 uninstall:
-	-rm $(PFXS) $(PFX)gstawk_make
+	-rm $(PFXS)
