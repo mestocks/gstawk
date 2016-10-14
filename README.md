@@ -15,6 +15,8 @@ If the number of [FILES] is 0, then gstawk attempts to read from stdin.
 
 Example output:
 
+    $ gstawk file*.fa
+
     assembly    ncontigs    nbps    ulen    maxlen    n50num    n50len    nonATGC
     file1.fa    47740    1173204653    24574    9022850    297    868209    11549079
     file2.fa    42231    1173183641    24137    9021331    302    832291    10227642
