@@ -13,7 +13,7 @@ Usage:
 
 If the number of [FILES] is 0, then gstawk attempts to read from stdin.
 
-Example output:
+Example:
 
     $ gstawk file*.fa
 
