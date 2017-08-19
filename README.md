@@ -36,11 +36,11 @@ Quick Install
 -------------
 
 ```bash
-wget https://github.com/mspopgen/gstawk/archive/vX.Y.Z.tar.gz
-tar -zxvf vX.Y.X.tar.gz
+wget https://github.com/mspopgen/gstawk/releases/download/gstawk-X.Y.Z.tar.gz
+tar -zxvf gstawk-X.Y.X.tar.gz
 cd gstawk-X.Y.Z
+./configure
 make
 make install
 ```
-This will install the relevant binaries into ```~/.local/bin/```. Be sure to add this directory to your ```$PATH```
-so that it can be called from any directory.
+The installation directory can be specified using './configure --prefix=<path/to/dir>'. Admin permissions may be required for the final installation step.
