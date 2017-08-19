@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([gstawk], [0.1.3], [mestocks@protonmail.com])
+AC_INIT([gstawk], [0.1.4], [mestocks@protonmail.com])
 
 AC_PROG_CC
 AC_PROG_INSTALL
