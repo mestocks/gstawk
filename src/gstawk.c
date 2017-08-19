@@ -6,14 +6,28 @@
 #define BSIZE 8192
 #define NCHR 1000000
 
-int cmpfunc (const void * a, const void * b) { return ( *(long long int*)b - *(long long int*)a ); }
+int cmpfunc (const void * a, const void * b)
+{
+  return ( *(long long int*)b - *(long long int*)a );
+}
 
 int main(int argc, char *argv[])
-{  
-  const char *dna = "ATGCatgc";
-
+{
+  if (argc == 1) {
+    printf("Help!\n");
+    exit(0);
+  }
+  
   int d;
   int darray[DNA];
+  const char *dna = "ATGCatgc";
+  
+  /*
+   * darray[(int)<char>] should return 1 for the characters 
+   * given in 'dna', and 0 otherwise. Quick and easy way to 
+   * check whether a character 'is.dna()' without using a bunch 
+   * of if statements or switches.
+   */
   for (d = 0; d < DNA; d++) {
     darray[d] = 0;
   }
@@ -45,20 +59,10 @@ int main(int argc, char *argv[])
   long long int n50;
   long long int n50len;
   
-  if (argc == 1) {
-    arg1 = 0;
-  } else {
-    arg1 = 1;
-  }
-
   printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "assembly", "ncontigs", "nbps", "ulen", "maxlen", "n50num", "n50len", "nonATGC");
   
-  for (f = arg1; f < argc; f++) {
-    if (f == 0) {
-      fp = stdin;
-    } else {
-      fp = fopen(argv[f], "r");
-    }
+  for (f = 1; f < argc; f++) {
+    fp = fopen(argv[f], "r");
     
     l = 0;
     L = 0;
@@ -106,11 +110,7 @@ int main(int argc, char *argv[])
       n50len = chrlen[c];
       c++;
     }
-    if (f == 0) {
-      printf("%s\t%d\t%lli\t%lli\t%lli\t%d\t%lli\t%lli\n", "stdin", ichr, L, L / ichr, chrlen[0], c, n50len, non);
-    } else {
-      printf("%s\t%d\t%lli\t%lli\t%lli\t%d\t%lli\t%lli\n", argv[f], ichr, L, L / ichr, chrlen[0], c, n50len, non);
-    }
+    printf("%s\t%d\t%lli\t%lli\t%lli\t%d\t%lli\t%lli\n", argv[f], ichr, L, L / ichr, chrlen[0], c, n50len, non);
     
     fclose(fp);
   }
