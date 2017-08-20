@@ -6,21 +6,19 @@ gstawk
 Quick Guide
 -------------
 
-```bash
 Usage:
-
-    gstawk [FILES]
-
-If the number of [FILES] is 0, then gstawk attempts to read from stdin.
+```bash
+    gstawk <assembly1.fa> [<assembly2.fa> ...]
+```
 
 Example:
-
+```bash
     $ gstawk file*.fa
 
     assembly    ncontigs    nbps    ulen    maxlen    n50num    n50len    nonATGC
     file1.fa    47740    1173204653    24574    9022850    297    868209    11549079
     file2.fa    42231    1173183641    24137    9021331    302    832291    10227642
-
+```
 Output:
 
     ncontigs - number of contigs
@@ -30,7 +28,6 @@ Output:
     n50num   - number of contigs making up 50% of all base pairs
     n50len   - smallest contig included in those making up 50% of all base pairs
     nonATGC  - number of non-DNA bases (i.e. not 'A', 'T', 'G', 'C', 'a', 't', 'g' or 'c')
-```
 
 Quick Install
 -------------
